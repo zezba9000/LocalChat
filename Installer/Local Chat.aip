@@ -13,10 +13,10 @@
     <ROW Property="ARPURLUPDATEINFO" Value="https://github.com/zezba9000/LocalChat/releases"/>
     <ROW Property="CTRLS" Value="2"/>
     <ROW Property="Manufacturer" Value="Andrew Witte"/>
-    <ROW Property="ProductCode" Value="1033:{BFDF7B7B-8078-41E3-98B3-6DDF5EBFAADC} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{2A51A768-CF32-47AE-B6B0-DB80FE99FE37} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Local Chat"/>
-    <ROW Property="ProductVersion" Value="1.0.0" Type="32"/>
+    <ROW Property="ProductVersion" Value="1.1.0" Type="32"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{AAD2CFB1-C1AD-481F-A849-1078C170A51C}"/>

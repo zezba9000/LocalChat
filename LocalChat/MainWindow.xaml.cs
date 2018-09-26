@@ -16,6 +16,7 @@ namespace LocalChat
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		public static MainWindow singleton;
 		private TranslationClient translationClient;
 		private string messageTemplateXAML;
 		private string[] langCodes;
@@ -23,11 +24,22 @@ namespace LocalChat
 
 		public MainWindow()
 		{
+			singleton = this;
 			InitializeComponent();
 
 			// clone and disable template message
 			messageTemplateXAML = XamlWriter.Save(messageTemplate);
 			messageTemplate.Visibility = Visibility.Collapsed;
+
+			// load settings
+			Settings.Load();
+			autoTranlate = Settings.obj.autoTranslate;
+			if (!string.IsNullOrEmpty(Settings.obj.langCode1) && !string.IsNullOrEmpty(Settings.obj.langCode2))
+			{
+				langCodes = new string[2];
+				langCodes[0] = Settings.obj.langCode1;
+				langCodes[1] = Settings.obj.langCode2;
+			}
 		}
 
 		protected override void OnContentRendered(EventArgs e)
@@ -58,6 +70,15 @@ namespace LocalChat
 				translationClient = null;
 			}
 
+			// save settings
+			Settings.obj.autoTranslate = autoTranlate;
+			if (langCodes != null && langCodes.Length == 2 && !string.IsNullOrEmpty(langCodes[0]) && !string.IsNullOrEmpty(langCodes[1]))
+			{
+				Settings.obj.langCode1 = langCodes[0];
+				Settings.obj.langCode2 = langCodes[1];
+			}
+			Settings.Save();
+
 			base.OnClosing(e);
 		}
 
@@ -71,11 +92,14 @@ namespace LocalChat
 			var messageItem = (Border)XamlReader.Load(xmlReader);
 
 			// setup message
-			var messageTextBlock = (TextBlock)messageItem.FindName("messageTextBlock");
+			var messageTextBlock = (TextBox)messageItem.FindName("messageTextBlock");
 			messageTextBlock.Text = enterTextBox.Text;
 
 			var translateButton = (Button)messageItem.FindName("translateButton");
 			translateButton.Click += translateButton_Click;
+
+			var closeButton = (Button)messageItem.FindName("closeButton");
+			closeButton.Click += closeButton_Click;
 
 			// finish
 			messageStackPanel.Children.Add(messageItem);
@@ -84,10 +108,23 @@ namespace LocalChat
 			if (autoTranlate) translateButton_Click(translateButton, e);
 		}
 
-		private void OnKeyDownHandler(object sender, KeyEventArgs e)
+		private void enterTextBox_OnKeyDownHandler(object sender, KeyEventArgs e)
 		{
 			if (e.Key != Key.Return) return;
-			postButton_Click(sender, null);
+			if (Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift))
+			{
+				int caret = enterTextBox.CaretIndex;
+				string text = enterTextBox.Text;
+				string first = text.Substring(0, enterTextBox.CaretIndex);
+				string last = text.Substring(enterTextBox.CaretIndex);
+				enterTextBox.Text = first + Environment.NewLine + last;
+				enterTextBox.CaretIndex = caret + 1;
+				e.Handled = true;
+			}
+			else
+			{
+				postButton_Click(sender, null);
+			}
 		}
 
 		private void translateButton_Click(object sender, RoutedEventArgs e)
@@ -113,10 +150,10 @@ namespace LocalChat
 
 			// get xaml objects
 			var button = (Button)sender;
-			var grid = (Grid)button.Parent;
+			var grid = (Grid)((Grid)button.Parent).Parent;
 			var translationSeperator = (Separator)grid.FindName("translationSeperator");
-			var messageTextBlock = (TextBlock)grid.FindName("messageTextBlock");
-			var messageTranslatedTextBlock = (TextBlock)grid.FindName("messageTranslatedTextBlock");
+			var messageTextBlock = (TextBox)grid.FindName("messageTextBlock");
+			var messageTranslatedTextBlock = (TextBox)grid.FindName("messageTranslatedTextBlock");
 
 			// check if lang can be translated
 			var detectedLang = translationClient.DetectLanguage(messageTextBlock.Text);
@@ -146,6 +183,14 @@ namespace LocalChat
 			messageTranslatedTextBlock.Text = response.TranslatedText;
 			messageTranslatedTextBlock.Visibility = Visibility.Visible;
 			translationSeperator.Visibility = Visibility.Visible;
+		}
+
+		private void closeButton_Click(object sender, RoutedEventArgs e)
+		{
+			var button = (Button)sender;
+			var grid = (Grid)((Grid)button.Parent).Parent;
+			var messageTemplate = (Border)grid.Parent;
+			messageStackPanel.Children.Remove(messageTemplate);
 		}
 
 		private void settingsButton_Click(object sender, RoutedEventArgs e)
