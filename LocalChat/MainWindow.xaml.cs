@@ -201,7 +201,7 @@ namespace LocalChat
 				return;
 			}
 
-			settingsOverlay.Show(translationClient, langCodes, SettingsDoneCallback);
+			settingsOverlay.Show(translationClient, langCodes, autoTranlate, SettingsDoneCallback);
 		}
 
 		private void SettingsDoneCallback(string[] langCodes, bool autoTranlate)
