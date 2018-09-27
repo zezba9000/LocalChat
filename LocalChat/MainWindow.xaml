@@ -15,7 +15,7 @@
 							<StackPanel Orientation="Vertical" Margin="4,4,96,4">
 								<TextBox Name="messageTextBlock" Text="Hello World" TextWrapping="Wrap" Margin="4" IsReadOnly="True"/>
 								<Separator Name="translationSeperator" Visibility="Collapsed"/>
-								<TextBox Name="messageTranslatedTextBlock" TextWrapping="Wrap" Margin="4" Visibility="Collapsed"/>
+								<TextBox Name="messageTranslatedTextBlock" TextWrapping="Wrap" Margin="4" Visibility="Collapsed" IsReadOnly="True"/>
 							</StackPanel>
 							<Grid HorizontalAlignment="Right" Margin="4">
 								<Button Name="translateButton" Content="Translate" HorizontalAlignment="Right" Width="64" Height="24" Margin="4,0,24,0"/>
