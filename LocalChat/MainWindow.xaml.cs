@@ -1,10 +1,12 @@
 ﻿using System;
 using System.ComponentModel;
 using System.IO;
+using System.Media;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Markup;
+using System.Windows.Media;
 using System.Xml;
 using Google.Apis.Auth.OAuth2;
 using Google.Cloud.Translation.V2;
@@ -17,6 +19,7 @@ namespace LocalChat
 	public partial class MainWindow : Window
 	{
 		public static MainWindow singleton;
+		private MediaPlayer messageSoundPlayer;
 		private TranslationClient translationClient;
 		private string messageTemplateXAML;
 		private string[] langCodes;
@@ -26,6 +29,11 @@ namespace LocalChat
 		{
 			singleton = this;
 			InitializeComponent();
+
+			// load message sound
+			var soundURI = new Uri("message.wav", UriKind.Relative);
+			messageSoundPlayer = new MediaPlayer();
+			messageSoundPlayer.Open(soundURI);
 
 			// clone and disable template message
 			messageTemplateXAML = XamlWriter.Save(messageTemplate);
@@ -92,6 +100,9 @@ namespace LocalChat
 			var messageItem = (Border)XamlReader.Load(xmlReader);
 
 			// setup message
+			var datetimeTextBlock = (TextBlock)messageItem.FindName("datetimeTextBlock");
+			datetimeTextBlock.Text = DateTime.Now.ToLocalTime().ToString();
+
 			var messageTextBlock = (TextBox)messageItem.FindName("messageTextBlock");
 			messageTextBlock.Text = enterTextBox.Text;
 
@@ -106,6 +117,8 @@ namespace LocalChat
 			enterTextBox.Clear();
 			scrollViewer.ScrollToEnd();
 			if (autoTranlate) translateButton_Click(translateButton, e);
+			messageSoundPlayer.Stop();
+			messageSoundPlayer.Play();
 		}
 
 		private void enterTextBox_OnKeyDownHandler(object sender, KeyEventArgs e)

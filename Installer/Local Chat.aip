@@ -13,10 +13,10 @@
     <ROW Property="ARPURLUPDATEINFO" Value="https://github.com/zezba9000/LocalChat/releases"/>
     <ROW Property="CTRLS" Value="2"/>
     <ROW Property="Manufacturer" Value="Andrew Witte"/>
-    <ROW Property="ProductCode" Value="1033:{CE382591-64E6-4417-BA65-D866CF4C57F9} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{58423929-6026-4E46-A28E-98EB68694DD5} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Local Chat"/>
-    <ROW Property="ProductVersion" Value="1.1.1" Type="32"/>
+    <ROW Property="ProductVersion" Value="1.1.2" Type="32"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{AAD2CFB1-C1AD-481F-A849-1078C170A51C}"/>
@@ -75,7 +75,7 @@
     <ROW File="Google.Apis.dll" Component_="Google.Apis.dll" FileName="GOOGLE~6.DLL|Google.Apis.dll" Attributes="0" SourcePath="..\LocalChat\bin\Release\Google.Apis.dll" SelfReg="false" NextFile="Google.Apis.PlatformServices.dll"/>
     <ROW File="Google.Cloud.Translation.V2.dll" Component_="Google.Cloud.Translation.V2.dll" FileName="GOOGLE~9.DLL|Google.Cloud.Translation.V2.dll" Attributes="0" SourcePath="..\LocalChat\bin\Release\Google.Cloud.Translation.V2.dll" SelfReg="false" NextFile="LocalChat.json"/>
     <ROW File="LocalChat.exe" Component_="LocalChat.exe" FileName="LOCALC~1.EXE|LocalChat.exe" Attributes="0" SourcePath="..\LocalChat\bin\Release\LocalChat.exe" SelfReg="false" NextFile="Microsoft.Win32.Primitives.dll" DigSign="true"/>
-    <ROW File="LocalChat.exe.config" Component_="LocalChat.json" FileName="LOCALC~1.CON|LocalChat.exe.config" Attributes="0" SourcePath="..\LocalChat\bin\Release\LocalChat.exe.config" SelfReg="false"/>
+    <ROW File="LocalChat.exe.config" Component_="LocalChat.json" FileName="LOCALC~1.CON|LocalChat.exe.config" Attributes="0" SourcePath="..\LocalChat\bin\Release\LocalChat.exe.config" SelfReg="false" NextFile="message.wav"/>
     <ROW File="LocalChat.json" Component_="LocalChat.json" FileName="LOCALC~1.JSO|Local Chat.json" Attributes="0" SourcePath="..\LocalChat\bin\Release\Local Chat.json" SelfReg="false" NextFile="LocalChat.exe"/>
     <ROW File="Microsoft.Win32.Primitives.dll" Component_="Microsoft.Win32.Primitives.dll" FileName="MICROS~1.DLL|Microsoft.Win32.Primitives.dll" Attributes="0" SourcePath="..\LocalChat\bin\Release\Microsoft.Win32.Primitives.dll" SelfReg="false" NextFile="Newtonsoft.Json.dll"/>
     <ROW File="Newtonsoft.Json.dll" Component_="Newtonsoft.Json.dll" FileName="NEWTON~1.DLL|Newtonsoft.Json.dll" Attributes="0" SourcePath="..\LocalChat\bin\Release\Newtonsoft.Json.dll" SelfReg="false" NextFile="System.Diagnostics.DiagnosticSource.dll"/>
@@ -88,6 +88,7 @@
     <ROW File="System.Security.Cryptography.Encoding.dll" Component_="System.Security.Cryptography.Encoding.dll" FileName="SYSTEM~7.DLL|System.Security.Cryptography.Encoding.dll" Attributes="0" SourcePath="..\LocalChat\bin\Release\System.Security.Cryptography.Encoding.dll" SelfReg="false" NextFile="System.Security.Cryptography.Primitives.dll"/>
     <ROW File="System.Security.Cryptography.Primitives.dll" Component_="System.Security.Cryptography.Primitives.dll" FileName="SYSTEM~8.DLL|System.Security.Cryptography.Primitives.dll" Attributes="0" SourcePath="..\LocalChat\bin\Release\System.Security.Cryptography.Primitives.dll" SelfReg="false" NextFile="System.Security.Cryptography.X509Certificates.dll"/>
     <ROW File="System.Security.Cryptography.X509Certificates.dll" Component_="System.Security.Cryptography.X509Certificates.dll" FileName="SYSTEM~9.DLL|System.Security.Cryptography.X509Certificates.dll" Attributes="0" SourcePath="..\LocalChat\bin\Release\System.Security.Cryptography.X509Certificates.dll" SelfReg="false" NextFile="LocalChat.exe.config"/>
+    <ROW File="message.wav" Component_="LocalChat.json" FileName="message.wav" Attributes="0" SourcePath="..\LocalChat\bin\Release\message.wav" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BootstrOptComponent">
     <ROW BootstrOptKey="GlobalOptions" DownloadFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\prerequisites" Options="2"/>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LocalChat"
         mc:Ignorable="d"
-        Title="Local Chat v1.1.1" Height="600" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Local Chat v1.1.2" Height="600" Width="800" WindowStartupLocation="CenterScreen">
 	<Grid>
 		<Border Margin="10,10,10,60" BorderBrush="Black" BorderThickness="1">
 			<ScrollViewer Name="scrollViewer" VerticalScrollBarVisibility="Visible">
@@ -13,13 +13,14 @@
 					<Border Name="messageTemplate" BorderBrush="Gray" BorderThickness="4" CornerRadius="8,8,8,8" Margin="4">
 						<Grid>
 							<StackPanel Orientation="Vertical" Margin="4,4,96,4">
+								<TextBlock Name="datetimeTextBlock" Text="Date Time" Foreground="Gray" FontStyle="Oblique" Margin="4,0,0,0"/>
 								<TextBox Name="messageTextBlock" Text="Hello World" TextWrapping="Wrap" Margin="4" IsReadOnly="True"/>
-								<Separator Name="translationSeperator" Visibility="Collapsed"/>
+								<Separator Name="translationSeperator" Visibility="Collapsed" Margin="4,0"/>
 								<TextBox Name="messageTranslatedTextBlock" TextWrapping="Wrap" Margin="4" Visibility="Collapsed" IsReadOnly="True"/>
 							</StackPanel>
 							<Grid HorizontalAlignment="Right" Margin="4">
-								<Button Name="translateButton" Content="Translate" HorizontalAlignment="Right" Width="64" Height="24" Margin="4,0,24,0"/>
-								<Button Name="closeButton" Content="X" HorizontalAlignment="Right" Width="16" Height="24" Margin="0,0,4,0"/>
+								<Button Name="translateButton" Content="Translate" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="64" Height="24" Margin="4,0,24,4"/>
+								<Button Name="closeButton" Content="X" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="16" Height="24" Margin="0,0,4,4"/>
 							</Grid>
 						</Grid>
 					</Border>

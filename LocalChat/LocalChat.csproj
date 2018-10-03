@@ -169,8 +169,12 @@
   <ItemGroup>
     <Resource Include="app.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="message.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(SolutionDir)Local Chat.json" "$(TargetDir)Local Chat.json"</PostBuildEvent>
+    <PostBuildEvent>copy "$(ProjectDir)message.wav" "$(TargetDir)message.wav"
+copy "$(SolutionDir)Local Chat.json" "$(TargetDir)Local Chat.json"</PostBuildEvent>
   </PropertyGroup>
 </Project>
