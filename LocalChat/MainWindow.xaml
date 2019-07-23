@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LocalChat"
         mc:Ignorable="d"
-        Title="Local Chat v1.1.2" Height="600" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Local Chat v1.1.3" Height="600" Width="800" WindowStartupLocation="CenterScreen">
 	<Grid>
 		<Border Margin="10,10,10,60" BorderBrush="Black" BorderThickness="1">
 			<ScrollViewer Name="scrollViewer" VerticalScrollBarVisibility="Visible">
