@@ -8,3 +8,6 @@
 * Open the "LocalChat.sln" solution in VS 2017
 * Copy your "Local Chat.json" next to the "LocalChat.sln" file.
 * Build and run
+
+## Dependencies
+Google.Cloud.Translation.V2

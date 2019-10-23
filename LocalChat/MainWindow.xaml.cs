@@ -33,6 +33,7 @@ namespace LocalChat
 			// load message sound
 			var soundURI = new Uri("message.wav", UriKind.Relative);
 			messageSoundPlayer = new MediaPlayer();
+			messageSoundPlayer.MediaFailed += MessageSoundPlayer_MediaFailed;
 			messageSoundPlayer.Open(soundURI);
 
 			// clone and disable template message
@@ -50,10 +51,15 @@ namespace LocalChat
 			}
 		}
 
+		private void MessageSoundPlayer_MediaFailed(object sender, ExceptionEventArgs e)
+		{
+			MessageBox.Show(this, "Cannot load audio file: " + e.ErrorException.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+		}
+
 		protected override void OnContentRendered(EventArgs e)
 		{
 			base.OnContentRendered(e);
-			
+
 			// init google translate
 			try
 			{
@@ -169,7 +175,17 @@ namespace LocalChat
 			var messageTranslatedTextBlock = (TextBox)grid.FindName("messageTranslatedTextBlock");
 
 			// check if lang can be translated
-			var detectedLang = translationClient.DetectLanguage(messageTextBlock.Text);
+			Detection detectedLang;
+			try
+			{
+				detectedLang = translationClient.DetectLanguage(messageTextBlock.Text);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(this, ex.Message, "Error");
+				return;
+			}
+
 			if (detectedLang.IsReliable)
 			{
 				MessageBox.Show(this, "Translation unreliable!", "Alert");
@@ -191,7 +207,7 @@ namespace LocalChat
 				MessageBox.Show(this, "Failed to translate!", "Alert");
 				return;
 			}
-			
+
 			// finish
 			messageTranslatedTextBlock.Text = response.TranslatedText;
 			messageTranslatedTextBlock.Visibility = Visibility.Visible;
